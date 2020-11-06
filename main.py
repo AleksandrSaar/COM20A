@@ -32,14 +32,14 @@ reld4 = []
 
 
 def ratemoji(rate):
-    if rate >= 7:
-        return '😁'
-    elif rate >= 5 and rate < 7:
-        return '😄'
-    elif rate < 5 and rate >= 3:
+    if rate >= 7.0 and rate <= 10.0:
+        return '🔥'
+    if rate >= 5.0 and rate < 7.0:
         return '😊'
-    else:
+    if rate < 5.0 and rate >= 3.0:
         return '😒'
+    else:
+        return '💩'
 
 
 def globall():
@@ -164,7 +164,7 @@ def lists(message):
         if i <= 19:
             bot.send_message(message.chat.id, (f'Popular Movies: \n'
                                                f'Title: {name[i]}\n'
-                                               f'Rate: {vote[i]} {ratemoji(vote[i])}\n'
+                                               f'Rate: {vote[i]} {ratemoji(float(vote[i]))}\n'
                                                f'Release date: {reld[i]}\n'
                                                f'Plot twist: {over[i]}'))
             i += 1
@@ -174,7 +174,7 @@ def lists(message):
         if k <= 19:
             bot.send_message(message.chat.id, (f'Now Playing Movies: \n'
                                                f'Title: {name2[k]}\n'
-                                               f'Rate: {vote2[k]} {ratemoji(vote[k])}\n'
+                                               f'Rate: {vote2[k]} {ratemoji(float(vote2[k]))}\n'
                                                f'Release date: {reld2[k]}\n'
                                                f'Plot twist: {over2[k]}'))
             k += 1
@@ -182,7 +182,7 @@ def lists(message):
         if j <= 19:
             bot.send_message(message.chat.id, (f'Top Rated Movies: \n'
                                                f'Title: {name3[j]}\n'
-                                               f'Rate: {vote3[j]} {ratemoji(vote[j])}\n'
+                                               f'Rate: {vote3[j]} {ratemoji(float(vote3[j]))}\n'
                                                f'Release date: {reld3[j]}\n'
                                                f'Plot twist: {over3[j]}'))
             j += 1
