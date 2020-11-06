@@ -205,7 +205,7 @@ def lists(message):
             j += 1
     elif message.text.lower() == 'about me':
         bot.send_message(message.chat.id, f'I am a TelegramBot, created by freshman from AIU COM20-A.\n'
-                                          f'I will help you to find a movie for your weekends)\n'
+                                          f'I will help you to find a movie for your weekends!\n'
                                           f'All resources been taken from The Movie Database(TMDb)\n'
                                           f'If you want to re-view movie lists - text /start\n'
                                           f'If you want to quit - text /quit')
