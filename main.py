@@ -3,7 +3,7 @@ import requests
 import json
 from telebot import types
 
-bot = telebot.TeleBot('1241558047:AAGMP9Ki8gMb5csY2Bi8dMy9dcFlQoq-7Sk')
+bot = telebot.TeleBot('1442405622:AAHtSMV9F4Ddk0w9YGAEJg_sSXswZjH96KY')
 
 i = 0
 k = 0
