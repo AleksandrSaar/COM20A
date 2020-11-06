@@ -30,7 +30,19 @@ vote4 = []
 over4 = []
 reld4 = []
 
-def parse():
+
+def ratemoji(rate):
+    if rate >= 7:
+        return '😁'
+    elif rate >= 5 and rate < 7:
+        return '😄'
+    elif rate < 5 and rate >= 3:
+        return '😊'
+    else:
+        return '😒'
+
+
+def globall():
     global name
     global name2
     global vote
@@ -43,14 +55,15 @@ def parse():
     global vote3
     global over3
     global reld3
-    global name4
-    global vote4
-    global over4
-    global reld4
+
+
+def parse():
+    globall()
 
     api_key = {'api_key': 'c714df39f180cce5586ae9609569bb08'}
 
-    ppl = requests.get('https://api.themoviedb.org/3/movie/upcoming', params=api_key)
+    ppl = requests.get('https://api.themoviedb.org/3/movie/upcoming',
+                       params=api_key)
     response = ppl.text
     dict = json.loads(response)
     res = dict['results']
@@ -97,6 +110,8 @@ def parse():
         over3.append(ov3)
         rd3 = raw['release_date']
         reld3.append(rd3)
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
     keyboard = types.ReplyKeyboardMarkup(True)
@@ -106,9 +121,13 @@ def start(message):
     keyboard.row('About Me')
     bot.send_message(message.chat.id, "Hi! Have nothing to watch?! I will help you! Choose the category you want)",
                      reply_markup=keyboard)
+
+
 @bot.message_handler(commands=['quit'])
 def goodbye(message):
     bot.send_message(message.chat.id, 'I hope I could help you) Bye!')
+
+
 @bot.message_handler(content_types=['text'])
 def lists(message):
     global i
@@ -145,7 +164,7 @@ def lists(message):
         if i <= 19:
             bot.send_message(message.chat.id, (f'Popular Movies: \n'
                                                f'Title: {name[i]}\n'
-                                               f'Rate: {vote[i]}\n'
+                                               f'Rate: {vote[i]} {ratemoji(vote[i])}\n'
                                                f'Release date: {reld[i]}\n'
                                                f'Plot twist: {over[i]}'))
             i += 1
@@ -155,7 +174,7 @@ def lists(message):
         if k <= 19:
             bot.send_message(message.chat.id, (f'Now Playing Movies: \n'
                                                f'Title: {name2[k]}\n'
-                                               f'Rate: {vote2[k]}\n'
+                                               f'Rate: {vote2[k]} {ratemoji(vote[k])}\n'
                                                f'Release date: {reld2[k]}\n'
                                                f'Plot twist: {over2[k]}'))
             k += 1
@@ -163,7 +182,7 @@ def lists(message):
         if j <= 19:
             bot.send_message(message.chat.id, (f'Top Rated Movies: \n'
                                                f'Title: {name3[j]}\n'
-                                               f'Rate: {vote3[j]}\n'
+                                               f'Rate: {vote3[j]} {ratemoji(vote[j])}\n'
                                                f'Release date: {reld3[j]}\n'
                                                f'Plot twist: {over3[j]}'))
             j += 1
@@ -177,4 +196,4 @@ def lists(message):
         bot.send_message(message.chat.id, "I DO NOT UNDERSTAND YOU! Please click on the button")
 
 
-bot.polling(none_stop=True, interval= 0)
+bot.polling(none_stop=True, interval=0)
