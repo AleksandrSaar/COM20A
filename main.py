@@ -119,7 +119,7 @@ def start(message):
     keyboard.row('Now Playing Movies')
     keyboard.row('Top Rated Movies')
     keyboard.row('About Me')
-    bot.send_message(message.chat.id, "Hi! Have nothing to watch?! I will help you! Choose the category you want)",
+    bot.send_message(message.chat.id, "Hi! Have nothing to watch?! I will help you! Choose the category you want",
                      reply_markup=keyboard)
 
 
