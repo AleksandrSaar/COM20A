@@ -79,7 +79,8 @@ def parse():
         rd = raw['release_date']
         reld.append(rd)
 
-    np = requests.get('https://api.themoviedb.org/3/movie/now_playing', params=api_key)
+    np = requests.get('https://api.themoviedb.org/3/mo'
+                      'vie/now_playing', params=api_key)
     response2 = np.text
     dict2 = json.loads(response2)
     res2 = dict2['results']
@@ -95,7 +96,8 @@ def parse():
         rd2 = raw['release_date']
         reld2.append(rd2)
 
-    tr = requests.get('https://api.themoviedb.org/3/movie/top_rated', params=api_key)
+    tr = requests.get('https://api.themoviedb.'
+                      'org/3/movie/top_rated', params=api_key)
     response3 = tr.text
     dict3 = json.loads(response3)
     res3 = dict3['results']
@@ -119,13 +121,17 @@ def start(message):
     keyboard.row('Now Playing Movies')
     keyboard.row('Top Rated Movies')
     keyboard.row('About Me')
-    bot.send_message(message.chat.id, "Hi! Have nothing to watch?! I will help you! Choose the category you want",
+    bot.send_message(message.chat.id, "Hi! Have nothing to watc"
+                                      "h?! I will help"
+                                      " you! Choose the cat"
+                                      "egory you want",
                      reply_markup=keyboard)
 
 
 @bot.message_handler(commands=['quit'])
 def goodbye(message):
-    bot.send_message(message.chat.id, 'I hope I could help you) Bye!')
+    bot.send_message(message.chat.id, 'I hope '
+                                      'I could help you) Bye!')
 
 
 @bot.message_handler(content_types=['text'])
@@ -138,7 +144,9 @@ def lists(message):
         keyboard = types.ReplyKeyboardMarkup(True)
         keyboard.row('Get UM')
         keyboard.row('Back')
-        bot.send_message(message.chat.id, 'You have chosen UPCOMING MOVIES. Click GET UM',
+        bot.send_message(message.chat.id, 'You have'
+                                          ' chosen UPCOMING M'
+                                          'OVIES. Click GET UM',
                          reply_markup=keyboard)
     elif message.text.lower() == 'back':
         keyboard = types.ReplyKeyboardMarkup(True)
@@ -146,35 +154,43 @@ def lists(message):
         keyboard.row('Now Playing Movies')
         keyboard.row('Top Rated Movies')
         keyboard.row('About Me')
-        bot.send_message(message.chat.id, 'Choose the category you want!',
+        bot.send_message(message.chat.id, 'Choose t'
+                                          'he category you want!',
                          reply_markup=keyboard)
     elif message.text.lower() == 'now playing movies':
         keyboard = types.ReplyKeyboardMarkup(True)
         keyboard.row('Get NPM')
         keyboard.row('Back')
-        bot.send_message(message.chat.id, 'You have chosen NOW PLAYING MOVIES. Click GET NPM',
+        bot.send_message(message.chat.id, 'You have chos'
+                                          'en NOW PLAYING MO'
+                                          'VIES. Click GET NPM',
                          reply_markup=keyboard)
     elif message.text.lower() == 'top rated movies':
         keyboard = types.ReplyKeyboardMarkup(True)
         keyboard.row('Get TRM')
         keyboard.row('Back')
-        bot.send_message(message.chat.id, 'You have chosen TOP RATED MOVIES. Click GET NPM',
+        bot.send_message(message.chat.id, 'You have chosen'
+                                          ' TOP RATED MOVIES.'
+                                          ' Click GET NPM',
                          reply_markup=keyboard)
     elif message.text.lower() == 'get um':
         if i <= 19:
             bot.send_message(message.chat.id, (f'Popular Movies: \n'
                                                f'Title: {name[i]}\n'
-                                               f'Rate: {vote[i]} {ratemoji(float(vote[i]))}\n'
+                                               f'Rate: {vote[i]}'
+                                               f' {ratemoji(float(vote[i]))}\n'
                                                f'Release date: {reld[i]}\n'
                                                f'Plot twist: {over[i]}'))
             i += 1
         else:
-            bot.send_message(message.chat.id, "I have nothing else(")
+            bot.send_message(message.chat.id, "I have"
+                                              " nothing else(")
     elif message.text.lower() == 'get npm':
         if k <= 19:
             bot.send_message(message.chat.id, (f'Now Playing Movies: \n'
                                                f'Title: {name2[k]}\n'
-                                               f'Rate: {vote2[k]} {ratemoji(float(vote2[k]))}\n'
+                                               f'Rate: {vote2[k]} '
+                                               f'{ratemoji(float(vote2[k]))}\n'
                                                f'Release date: {reld2[k]}\n'
                                                f'Plot twist: {over2[k]}'))
             k += 1
@@ -182,7 +198,8 @@ def lists(message):
         if j <= 19:
             bot.send_message(message.chat.id, (f'Top Rated Movies: \n'
                                                f'Title: {name3[j]}\n'
-                                               f'Rate: {vote3[j]} {ratemoji(float(vote3[j]))}\n'
+                                               f'Rate: {vote3[j]} '
+                                               f'{ratemoji(float(vote3[j]))}\n'
                                                f'Release date: {reld3[j]}\n'
                                                f'Plot twist: {over3[j]}'))
             j += 1
@@ -193,7 +210,9 @@ def lists(message):
                                           f'If you want to re-view movie lists - text /start\n'
                                           f'If you want to quit - text /quit')
     else:
-        bot.send_message(message.chat.id, "I DO NOT UNDERSTAND YOU! Please click on the button")
+        bot.send_message(message.chat.id, "I DO NOT "
+                                          "UNDERSTAND YOU! "
+                                          "Please click on the button")
 
 
 bot.polling(none_stop=True, interval=0)
